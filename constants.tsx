@@ -34,6 +34,8 @@ export const PAYMENT_ACCOUNT = {
   accountName: 'IBRAHIM ABDULMALIK',
 };
 
+export const SUPPORT_TELEGRAM_URL = 'https://t.me/paygo632';
+
 export const PayGoLogo = () => (
   <div className="flex flex-col items-center">
     <div className="relative w-40 h-16 bg-gradient-to-r from-purple-900 via-purple-800 to-indigo-950 flex items-center justify-center rounded-lg shadow-xl overflow-hidden">

@@ -4,7 +4,7 @@ import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation } f
 import Layout from './components/Layout';
 import Input from './components/Input';
 import Select from './components/Select';
-import { COUNTRIES, PayGoBanner, BANKS, PAYMENT_ACCOUNT } from './constants';
+import { COUNTRIES, PayGoBanner, BANKS, PAYMENT_ACCOUNT, SUPPORT_TELEGRAM_URL } from './constants';
 
 // --- Lists for Live Notifications ---
 const NIGERIAN_NAMES = ['Joseph', 'Aisha', 'Emeka', 'Funke', 'Ibrahim', 'Chioma', 'Abubakar', 'Ngozi', 'Tunde', 'Zainab', 'Chidi', 'Bisi', 'Umar', 'Ify', 'Sani', 'Yemi'];
@@ -880,15 +880,24 @@ const UpgradeAccountPage: React.FC = () => {
           <i className="fas fa-times text-4xl"></i>
         </div>
         <h1 className="text-3xl font-black text-gray-800 mb-4 uppercase dark:text-white">Verification Failed</h1>
-        <p className="text-gray-500 px-8 mb-10 font-medium dark:text-gray-400">
+        <p className="text-gray-500 px-8 mb-6 font-medium dark:text-gray-400">
           We could not verify your payment at this time. Please try again or contact support for manual verification.
         </p>
-        <button 
-          onClick={() => navigate('/dashboard', { state: location.state })}
-          className="w-full h-16 bg-black text-white rounded-2xl text-lg font-bold shadow-xl active:scale-95 transition-all dark:bg-purple-600"
-        >
-          Return to Dashboard
-        </button>
+        <div className="w-full space-y-3 px-4">
+          <button 
+            onClick={() => window.open(SUPPORT_TELEGRAM_URL, "_blank")}
+            className="w-full h-14 bg-purple-600 text-white rounded-2xl text-base font-bold shadow-xl active:scale-95 transition-all flex items-center justify-center space-x-2 hover:bg-purple-700"
+          >
+            <i className="fab fa-telegram-plane text-xl"></i>
+            <span>Contact Support</span>
+          </button>
+          <button 
+            onClick={() => navigate('/dashboard', { state: location.state })}
+            className="w-full h-14 bg-black text-white rounded-2xl text-base font-bold shadow-xl active:scale-95 transition-all dark:bg-gray-800"
+          >
+            Return to Dashboard
+          </button>
+        </div>
       </div>
     );
   }
@@ -1157,6 +1166,14 @@ const BuyPayIdPage: React.FC = () => {
                   <p className="text-xs font-bold uppercase tracking-tight">Payment Verification Failed</p>
                 </div>
                 <p className="text-[10px] text-red-500 mt-1 font-medium">We couldn't verify your payment. Please ensure you've uploaded your receipt correctly.</p>
+                <button
+                  type="button"
+                  onClick={() => window.open(SUPPORT_TELEGRAM_URL, "_blank")}
+                  className="mt-3 w-full py-2.5 bg-purple-600 text-white rounded-xl text-xs font-bold shadow flex items-center justify-center space-x-2 hover:bg-purple-700 transition-colors"
+                >
+                  <i className="fab fa-telegram-plane"></i>
+                  <span>Contact Support on Telegram</span>
+                </button>
               </div>
             )}
 
@@ -1743,7 +1760,7 @@ const DashboardPage: React.FC = () => {
     } else if (id === 'group') {
       window.open("https://t.me/legitbussiness20306", "_blank");
     } else if (id === 'support') {
-      window.open("https://t.me/emergency202782", "_blank");
+      window.open(SUPPORT_TELEGRAM_URL, "_blank");
     }
   };
 
@@ -1921,8 +1938,10 @@ const DashboardPage: React.FC = () => {
       
       {/* WhatsApp Chat Button Floating (matches screenshot) */}
       <button 
-        onClick={() => window.open("https://t.me/emergency202782", "_blank")}
+        onClick={() => window.open(SUPPORT_TELEGRAM_URL, "_blank")}
         className="fixed bottom-5 right-5 w-12 h-12 bg-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center z-[50] hover:scale-110 active:scale-95 transition-all"
+        title="Contact Support"
+        aria-label="Contact Support"
       >
         <i className="fas fa-comment-dots text-xl"></i>
       </button>
